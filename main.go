@@ -126,7 +126,7 @@ const (
 	HOST        = "smtp.163.com"
 	SERVER_ADDR = "smtp.163.com:465"
 	USER        = "youxileiting@163.com"  //发送邮件的邮箱
-	PASSWORD    = ""                      //发送邮件邮箱的密码
+	PASSWORD    = ""               //发送邮件邮箱的密码
 	TO          = "zhongjizhizun@126.com" //默认收件
 )
 
@@ -145,7 +145,7 @@ func SendEmail(to string, subject string, msg string) error {
 
 	return err
 }
-
+//有问题
 //smtp 包支持 先建立普通链接，然后STARTTLS
 //conn,_ := net.Dial()
 //cli, err := smtp.NewClient(conn, HOST)
@@ -195,6 +195,7 @@ func SendEmailSSL(to string, subject string, msg string) error {
 	return nil
 }
 
+//is ok
 func SendEmailWithGomail(to string, subject string, msg string) error {
 	m := gomail.NewMessage()
 
@@ -204,7 +205,7 @@ func SendEmailWithGomail(to string, subject string, msg string) error {
 	m.SetBody("text/html", msg)
 
 	d := gomail.NewDialer(HOST, 465, USER, PASSWORD)
-	d.SSL = false
+	d.SSL = true
 	d.Auth = unencryptedAuth{
 		smtp.PlainAuth("", USER, PASSWORD, HOST),
 	}
